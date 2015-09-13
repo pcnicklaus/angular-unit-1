@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ greeting }} World</title>
+  </head>
+  <body>
+    <p>{{1 + 6}}<p>
+    <br>
+    <p>Say something to the world <input type="text" ng-model="greeting" ng-init="greeting='Hello, '"></p>
+    <p>{{ greeting }} world!</p>
+    <br>
+
+    <h1>My name is: {{name}}</h1>
+    <br>
+    <input type="text" placeholder="What is your name?" ng-model="name">
+
+    <h1>my favorite pet is: {{select}}
+
+    <div class="form-group">
+
+      <br>
+      <select class="form-control" id="sel1" ng-model="select">
+        <option>Dogs</option>
+        <option>Cats</option>
+        <option>Dogs & Cats</option>
+        <option>Neither</option>
+      </select>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  </body>
+</html>

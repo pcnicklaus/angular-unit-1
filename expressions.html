@@ -1,0 +1,142 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- SCROLLS -->
+  <!-- load bootstrap and fontawesome via CDN -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <!-- SPELLS -->
+  <!-- load angular and angular route via CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
+   <script>
+    angular.module("myApp", [])
+      .controller("HelloController", ['$scope', function($scope) {
+        $scope.hello = {};
+        $scope.hello.title = "World";
+        $scope.pi = 3.1458934892043893;
+        $scope.names = ["Harry", "Ron", "Hermione", "Sirius", "Hedwig", "Tonks"];
+        $scope.symbols = ["&spades;", "&clubs;", "&hearts;", "&diams;"];
+        $scope.duplicates = [1,1,2,5,6,9,9,9];
+        $scope.object = {
+          one: 1,
+          two: 2
+        };
+      }]);
+    </script>
+</head>
+<body>
+
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+  <div id="main" ng-app="myApp">
+
+    <div ng-controller="HelloController">
+
+    <h1> built in directives </h1>
+
+   <!--    <div>
+
+        <ul>
+          <li ng-repeat="name in names">
+            {{name}}
+           </li>
+        </ul>
+        <p>I will display &#x2660;<p>
+        <ul>
+
+          <li ng-repeat="s in symbols" >
+            <p> {{ s }} </p>
+          </li>
+
+        </ul>
+
+        <ul>
+          <li ng-repeat="s in duplicates track by $index" >
+            <p> {{ s }} </p>
+          </li>
+        </ul>
+
+       <ul>
+          <li ng-repeat="key in object" >
+            <p> {{ key }} </p>
+          </li>
+        </ul>
+
+      <div>
+ -->
+
+<div ng-show="3 + 4 == 5">
+  3 + 4 isn't 5, don't show
+</div>
+
+<div ng-show="3 + 4 == 7">
+  3 + 4 is 7, do show
+</div>
+
+<div ng-hide="3 + 4 == 5">
+    3 + 4 isn't 5, don't hide
+</div>
+
+<div ng-hide="3 + 4 == 7">
+  3 + 4 is 7, do hide
+</div>
+
+
+<!--
+
+      <p> 1 + 2 = {{1 + 2}} </p>
+      <p> My name is {{"BoJack" + " Horseman"}} </p>
+      <p> The array [99,43,22] is {{ [99,43,22].length }} items long.</p>
+
+      <p> {{3.14159265359 | currency:"&euro;"}} </p>
+
+      <h1> Please Say Something </h1>
+
+      <input type="text" placeholder="What is your name?" ng-model="name">
+
+      <h2> Yelling: {{name | uppercase }}</h2>
+      <h2> whispering: {{name | lowercase }}</h2>
+
+
+      <div class="dropdown">
+      <label for="name">How many digits of PI?</label>
+        <select class="selectpicker" ng-model="pi">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <br>
+      <h4>Here you go, the first {{pi}} digits of PI!</h4>
+      <br>
+      {{3.14159265359 | number: pi}}
+      <br>
+
+    <h3>Super Useful Tip Calculator</h3>
+        <label for="meal-cost">How much did your meal cost?</label>
+        <input type="number" ng-model="meal">
+        <div class="dropdown">
+          <label for="tip">How much do you want to tip?</label>
+          <select class="selectpicker" ng-model="tip">
+            <option value="15">15%</option>
+            <option value="18">18%</option>
+            <option value="20">20%</option>
+          </select>
+        </div>
+
+        <h4>Subtotal: {{ meal/100*tip+meal | number: 2 | currency:"$"}}</h4>
+        <h4>Tip: {{meal/100*tip | number: 2 | currency:"$"}}</h4>
+        <br>
+        <br> -->
+
+
+    </div>
+  </div>
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+</body>
+</html>
