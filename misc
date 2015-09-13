@@ -1,0 +1,13 @@
+
+<input type="text" id="text1" onkeyup="document.getElementById('div1').innerHTML=document.getElementById('text1').value">
+
+<div id="div1">
+
+</div>
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('change').addEventListener('input', function (e) {
+    document.getElementById('location').innerHTML = e.target.value;
+  });
+});

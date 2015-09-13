@@ -10,17 +10,6 @@
   <body>
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-
-          <div class="row">
-            <div class="col-md-4">
-              <img src="img/mad-lib-happy-face.png" id="smile">
-            </div>
-            <div class="col-md-8">
-              <img src="img/ng-mad-libs-logo.png">
-            </div>
-          </div>
 
           <h2>Please provide the following words:</h2>
           <br>
@@ -64,17 +53,9 @@
             <button type="submit" class="btn btn-default" ng-click="show=true">Submit</button>
             <button type="submit" class="btn btn-default" ng-click="show=false">Start Over</button>
           </form>
-<!--  <a href="" ng-click="showme=true">Show</a>
-  <button ng-click="showme=false">Hide</button>
-
-  <div class="wrapper">
-    <p ng-hide="showme">It will appear here!</p>
-    <h2 ng-show="showme">This is mah content, yo!</h2>
-  </div> -->
 
 
           <hr>
-
 
 
           <h4 ng-show="show"><p><span class="input">{{ name }}</span> was a <span class="input">{{ job_title }}</span> who loved technology. Although she loved parts of her job, she absolutely hated  <span class="input">{{ tedious_task }}</span> and <span class="input">{{ dirty_task }}</span>. So, <span class="input">{{ name }}</span> met with her life mentor <span class="input">{{ celebrity }}</span> who told her to learn how to <span class="input">{{ useless_skill }}</span> with Galvanize. Galvanize didn't offer a course on <span class="input">{{ useless_skill }}</span> so she studied programming instead.</p>
