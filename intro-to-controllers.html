@@ -1,0 +1,36 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head>
+  <!-- SCROLLS -->
+  <!-- load bootstrap and fontawesome via CDN -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <!-- SPELLS -->
+  <!-- load angular and angular route via CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+ <!--  // <script src="script.js"></script> -->
+   <script>
+    var app = angular.module("firstApp", []);
+    app.controller("ExercisesController", function($scope){
+      $scope.FavColor = "Blue";
+      $scope.secondsInACentury = (60 * 60 * 24 * 365 * 100);
+      $scope.rightNow = new Date();
+
+    })
+    </script>
+</head>
+<body>
+
+  <div ng-controller="ExercisesController">
+    <h1>My favorite color is: {{FavColor}}</h1>
+    <h3>There are {{ secondsInACentury | number }}
+    <h3>Today is {{ rightNow | date:'fullDate' }}</h3>
+  </div>
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+</body>
+</html>
