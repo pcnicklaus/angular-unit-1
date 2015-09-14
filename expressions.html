@@ -11,7 +11,7 @@
   <!-- load angular and angular route via CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-  <script src="script.js"></script>
+ <!--  // <script src="script.js"></script> -->
    <script>
     angular.module("myApp", [])
       .controller("HelloController", ['$scope', function($scope) {
@@ -34,6 +34,21 @@
   <div id="main" ng-app="myApp">
 
     <div ng-controller="HelloController">
+
+    <h1> Sign up Page </h1>
+    <input type="text" placeholder="Password" ng-model="password">
+
+    <p>your password is {{ password.length }} characters.long</p>
+
+    <div ng-show="password.length > 6">
+      <button type="submit" class="btn btn-default">Sign Up!</button>
+    </div>
+    <div ng-hide="password.length > 6">
+      <p> Password is invalid!</p>
+    </div>
+
+
+
 
     <h1> built in directives </h1>
 
