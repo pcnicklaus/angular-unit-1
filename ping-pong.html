@@ -1,0 +1,138 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head>
+  <!-- SCROLLS -->
+  <!-- load bootstrap and fontawesome via CDN -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" />
+
+  <!-- SPELLS -->
+  <!-- load angular and angular route via CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+ <!--  // <script src="script.js"></script> -->
+   <script>
+    var app = angular.module("firstApp", []);
+    app.controller("ExercisesController", function($scope){
+      $scope.number = 5;
+      $scope.name = '';
+      $scope.pickRandomNumber = function(){
+        $scope.number = Math.floor(Math.random() * 10) + 1
+      };
+      $scope.reverseName = function () {
+        $scope.name = document.getElementById(name).val().split('').reverse().join('');
+      };
+      $scope.box1Counter = 0;
+      $scope.box1PlusOne = function () {
+        $scope.box1Counter ++;
+      };
+      $scope.box2Counter = 0;
+      $scope.box2PlusOne = function () {
+        $scope.box2Counter ++;
+      };
+      $scope.serving = function () {
+        if (scope.box1Counter + $scope.box2Counter % 2) {
+          // do something....
+        }
+      };
+    // app.filter('ReverseData', function () {
+    //   return function (Message) {
+    //     return Message.split("").reverse().joing("");
+    //   };
+    // });
+    });
+
+    app.controller('secondController', ['$scope', function($scope) {
+      $scope.rows = [];
+      $scope.addContact = function () {
+        $scope.rows.push({
+          'name': $scope.name,
+          'email': $scope.email,
+          'phone': $scope.phone
+        });
+        $scope.name = '';
+        $scope.email = '';
+        $scope.phone = '';
+      };
+
+    }]);
+    </script>
+    <style>
+      .green {
+        background-color: green;
+      }
+    </style>
+</head>
+<body>
+
+  <div ng-controller="ExercisesController">
+    <div class="box1" ng-class="{green: box1Counter>12}">
+      <p>player 1 score: {{box1Counter}}</p>
+      <button type="submit" class="btn btn-default" ng-click="box1PlusOne()">Player 1 Point</button>
+    </div>
+    <div class="box2" ng-class="{green: box2Counter>=12}">
+      <p>player 2 score: {{box2Counter}}</p>
+      <button type="submit" class="btn btn-default" ng-click="box2PlusOne()">Player 2 Point</button>
+    </div>
+  </div>
+
+  <div ng-controller="secondController">
+    <div class="container">
+    <br>
+    <div class="row">
+
+       <form class="form-inline" role="form">
+          <div class="form-group col-sm-3">
+            Name
+             <input type="text" class="form-control" placeholder="name" id="name" ng-model="name">
+          </div>
+
+          <div class="form-group col-sm-3">
+              Email
+              <input type="email" class="form-control" placeholder="email" id="email" ng-model="email">
+          </div>
+          <div class="form-group col-sm-3">
+              Phone
+              <input type="number" class="form-control" placeholder="phone" id="phone" ng-model="phone">
+          </div>
+          <div class="form-group col-sm-2">
+             <button type="submit" class="btn btn-success" ng-click="addContact()">Add Contact</button>
+          </div>
+      </form>
+      <div class="col-sm-4">
+        <br>
+        <input type="search" placeholder="search" ng-model="searchText">
+      </div>
+    </div> <!-- end row -->
+    <div class="col-sm-10">
+        <h2>Contacts</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="thing in rows | filter:searchText">
+              <td>{{ thing.name }}
+              </td>
+              <td>{{ thing.email }}
+              </td>
+              <td>{{ thing.phone }}
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+</body>
+</html>

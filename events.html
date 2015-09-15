@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html ng-app="firstApp">
+<head>
+  <!-- SCROLLS -->
+  <!-- load bootstrap and fontawesome via CDN -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <!-- SPELLS -->
+  <!-- load angular and angular route via CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+ <!--  // <script src="script.js"></script> -->
+   <script>
+    var app = angular.module("firstApp", []);
+    app.controller("ExercisesController", function($scope){
+      $scope.number = 5;
+      $scope.name = '';
+      $scope.pickRandomNumber = function(){
+        $scope.number = Math.floor(Math.random() * 10) + 1
+      };
+      $scope.reverseName = function () {
+        $scope.name = document.getElementById(name).val().split('').reverse().join('');
+      };
+
+    })
+
+    // app.filter('ReverseData', function () {
+    //   return function (Message) {
+    //     return Message.split("").reverse().joing("");
+    //   };
+    // });
+    </script>
+</head>
+<body>
+
+  <div ng-controller="ExercisesController">
+
+    <button ng-click="pickRandomNumber()">Pick Random Number</button>
+    <h3>The number is: {{number}}</h3>
+
+    <h3> Word Reverser</h3>
+    <input type="text" id="name" placeholder="enter a word" ng-model="name">
+    <button ng-click="reverseName()">Reverse</button>
+    <p>Your word is: {{ name }}
+
+  </div>
+
+
+</body>
+</html>
+
+<!-- exercise answer:
+- when you click the button the, ng-click fires the pick Random number function which resets the variable $scope.number to a random number between 1 and 10. It updates and stays that way because... I'm not exactly sure but i believe its because of the cascasding nature of html or b/c the scope.number = 5 is just the initial value when the page is loaded then, after the function is run, it's value is updated within the controller to the new value. -->

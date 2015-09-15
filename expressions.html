@@ -19,7 +19,7 @@
         $scope.hello.title = "World";
         $scope.pi = 3.1458934892043893;
         $scope.names = ["Harry", "Ron", "Hermione", "Sirius", "Hedwig", "Tonks"];
-        $scope.symbols = ["&spades;", "&clubs;", "&hearts;", "&diams;"];
+        $scope.symbols = ["&clubs;", "&hearts;", "&diams;"];
         $scope.duplicates = [1,1,2,5,6,9,9,9];
         $scope.object = {
           one: 1,
@@ -36,7 +36,7 @@
     <div ng-controller="HelloController">
 
     <h1> Sign up Page </h1>
-    <input type="text" placeholder="Password" ng-model="password">
+    <input type="password" placeholder="Password" ng-model="password">
 
     <p>your password is {{ password.length }} characters.long</p>
 
@@ -48,11 +48,24 @@
     </div>
 
 
+      <div class="dropdown">
+      <label for="name">How many digits of PI?</label>
+        <select class="selectpicker" ng-model="pi">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <br>
+      <h4>Here you go, the first {{pi}} digits of PI!</h4>
+      <br>
+      {{3.14159265359 | number: pi}}
+      <br>
 
 
     <h1> built in directives </h1>
 
-   <!--    <div>
+      <div>
 
         <ul>
           <li ng-repeat="name in names">
@@ -69,8 +82,8 @@
         </ul>
 
         <ul>
-          <li ng-repeat="s in duplicates track by $index" >
-            <p> {{ s }} </p>
+          <li ng-repeat="num in duplicates track by $index" >
+            <p> {{ num }} </p>
           </li>
         </ul>
 
@@ -81,7 +94,7 @@
         </ul>
 
       <div>
- -->
+
 
 <div ng-show="3 + 4 == 5">
   3 + 4 isn't 5, don't show
@@ -100,7 +113,7 @@
 </div>
 
 
-<!--
+
 
       <p> 1 + 2 = {{1 + 2}} </p>
       <p> My name is {{"BoJack" + " Horseman"}} </p>
@@ -136,16 +149,17 @@
         <div class="dropdown">
           <label for="tip">How much do you want to tip?</label>
           <select class="selectpicker" ng-model="tip">
-            <option value="15">15%</option>
-            <option value="18">18%</option>
-            <option value="20">20%</option>
+            <option value=".15">15%</option>
+            <option value=".18">18%</option>
+            <option value=".20">20%</option>
           </select>
         </div>
 
-        <h4>Subtotal: {{ meal/100*tip+meal | number: 2 | currency:"$"}}</h4>
-        <h4>Tip: {{meal/100*tip | number: 2 | currency:"$"}}</h4>
+        <h4>Subtotal: {{ meal | number: 2 | currency:"$"}}</h4>
+        <h4>Tip: {{meal * tip | number: 2 | currency:"$"}}</h4>
+        <h4>Total: {{ meal + meal*tip | currency }}
         <br>
-        <br> -->
+        <br>
 
 
     </div>
