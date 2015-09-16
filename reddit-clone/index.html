@@ -78,14 +78,22 @@
           <h4 class="author"> {{post.author}}</h4>
           <p class="description">{{post.description}}</p>
           <time title="{{ post.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.date | amCalendar }}</time>
-          <p class="votes"> {{post.votes}} <button type="submit" class="btn btn-default" ng-click="upVote()">Upvote</button><button type="submit" class="btn btn-default" ng-click="downVote()">Downvote</button></p>
+
+          <p class="votes"> {{post.votes}} <button type="submit" class="btn btn-default" ng-click="post.votes = post.votes +1">Upvote</button>
+
+          <button type="submit" class="btn btn-default" ng-click="post.votes = post.votes -1">Downvote</button></p>
 
           <!-- NEED HELP HOOKING THIS UP!!! -->
           <!-- comment in comments... -->
+          <button class="btn btn-success" ng-click="commentScreen = !commentScreen">Add a comment</button>
 
-          <p class="comments"> Comments {{ post.comments }}
-          </p>
-          <button class="btn btn-success" ng-click="addComment()" ng-mouseup="commentScreen = !commentScreen">Add a comment</button>
+          <div ng-repeat="comment in post.comments">
+
+            <p>{{ comment.author }} says {{ comment.comment }}</p>
+
+
+          </div>
+
 
           <div ng-show="commentScreen">
 
@@ -110,7 +118,7 @@
               </div> <!-- end modal body -->
 
 
-              <button class="btn btn-success" ng-click="addComment()" ng-mouseup="commentScreen = !commentScreen">Add a comment</button>
+              <button class="btn btn-success" ng-click="addComment()" ng-mouseup="commentScreen = !commentScreen">Post</button>
               <button class="btn" ng-click="commentScreen = !commentScreen">Cancel</button>
 
           </div>

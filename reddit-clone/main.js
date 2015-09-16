@@ -7,32 +7,35 @@
             // hardcoded info
             $scope.posts = [
                   {
-                    title: "A title",
+                    title: "One title",
                     author: "some guy",
                     description: "some fancy words about something",
                     image: "http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg",
+                    comments: [],
                     votes: 0
                   },
                   {
-                    title: "A different title",
-                    author: "some guy",
+                    title: "Two titles",
+                    author: "a different guy",
                     description: "some other fancy words about something",
-                    image: "http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg"
+                    image: "http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg",
+                    comments: [],
+                    votes: 0
                   },
                   {
-                    title: "a third title",
+                    title: "Three titles, hah, hah, hah, hah",
                     author: "some other, other guy",
                     description: "some fancy words about something",
                     image: "http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg",
+                    comments: [],
                     votes: 0
-                    // date: newDate()
 
                   }
                 ];
 
             // voting functionality - not working
-            $scope.upVote = function () {
-              $scope.votes ++;
+            $scope.upVote = function (place) {
+              place += 1;
             };
             $scope.downVote = function () {
               $scope.votes --;
@@ -55,14 +58,25 @@
 
             };
 
-            $scope.ok = function() {
-              $scope.showModal = false;
-            };
+            // $scope.addComment = function () {
+            //   $scope.post.comments.push({
+            //     'title': $scope.commentTitle,
+            //     'author': $scope.commentAuthor,
+            //     'description': $scope.commentDescription,
+            //     'date': Date.now()
+            //   });
+            //   console.log(comments);
+            //   $scope.title = '';
+            //   $scope.author = '';
+            //   $scope.description = '';
+            //   $scope.image = '';
+            // };
 
-            $scope.cancel = function() {
-              $scope.showModal = false;
-            };
-
+           $scope.addComment = function(){
+               this.post.comments.push({author:this.commentAuthor, comment:this.commentDescription});
+              $scope.commentAuthor = '';
+              $scope.commentDescription = '';
+             };
 
 
         }]);
