@@ -1,0 +1,13 @@
+.sale {
+   color: orange;
+  }
+
+body {
+  padding-top: 50px;
+}
+
+.box {
+  background: red;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

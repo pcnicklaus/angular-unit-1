@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="redditController">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ greeting }} World</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+
+  </head>
+
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-btn" ng-click="submitScreen = !submitScreen">Submit Post</button>
+                <input type="search" class="navbar-search" ng-model="searchText" placeholder="Search">
+                <a class="navbar-brand page-scroll" href="#page-top">Reddit Clone</a>
+                <select ng-model="selectedOrder" ng-options="option for option in options">Sort By</select>
+            </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+  </nav>
+
+  <body>
+  <div modal="showModal" close="cancel()" ng-show="submitScreen">
+    <div class="modal-header">
+        <h4>Submit a Post</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="title" ng-model="title">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Author" ng-model="author">
+                </div>
+                <div class="form-group">
+                  <input type="textarea" class="form-control" placeholder="Description" ng-model="description">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Image URL" ng-model="image">
+                </div>
+
+              </form>
+            </div>
+          </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" ng-click="addPost()" ng-mouseup="addPost()">Okay</button>
+      <button class="btn" ng-click="cancel()">Cancel</button>
+    </div>
+  </div>
+
+
+
+<!--
+    <div ng-repeat="post in posts | orderBy:selectedOrder" class="box">
+        <div class="col-xs-offset-1 col-xs-2 col-sm-offset-1 col-sm-2 col-md-2 col-lg-2 col-xl-2 box">
+          <img ng-src="{{post.image}}" alt="camera" height="100" width="auto">
+        </div>
+        <div class="col-xs-offset-2 col-xs-6 col-sm-offset-1 col-xs-8 col-md-8 col-lg-8 col-xl-8 box">
+          <h2 class="title"> {{post.title}}</h2>
+          <h4 class="author"> {{post.author}}</h4>
+          <p class="description">{{post.description}}</p>
+          <h5>Date Posted: {{ post.date }} </h5>
+          <p class="votes"> {{post.votes}} <button type="submit" class="btn btn-default" ng-click="upVote()">Upvote</button><button type="submit" class="btn btn-default" ng-click="downVote()">Downvote</button></p>
+        </div>
+    </div>
+ -->
+    <div class="container box" ng-repeat="post in posts | orderBy:selectedOrder | filter:searchText" >
+      <div class="row">
+        <!-- picture -->
+        <div class="col-sm-offset-1, col-sm-2">
+          <img ng-src="{{post.image}}" alt="camera" height="100" width="auto">
+        </div>
+        <div class="col-sm-8">
+        <h2 class="title"> {{post.title}}</h2>
+          <h4 class="author"> {{post.author}}</h4>
+          <p class="description">{{post.description}}</p>
+          <time title="{{ post.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.date | amCalendar }}</time>
+          <p class="votes"> {{post.votes}} <button type="submit" class="btn btn-default" ng-click="upVote()">Upvote</button><button type="submit" class="btn btn-default" ng-click="downVote()">Downvote</button></p>
+          <p class="comments"> {{ post.comments }} </p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+    <!-- load momentJS (required for angular-moment) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
+    <!-- load angular-moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
+    <!-- angular ui -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+
+
+  </body>
+</html>

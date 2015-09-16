@@ -23,11 +23,15 @@
       $scope.reverseName = function () {
         $scope.name = document.getElementById(name).val().split('').reverse().join('');
       };
+
       $scope.box1Counter = 0;
+
       $scope.box1PlusOne = function () {
         $scope.box1Counter ++;
       };
+
       $scope.box2Counter = 0;
+
       $scope.box2PlusOne = function () {
         $scope.box2Counter ++;
       };
@@ -97,7 +101,7 @@
               <input type="number" class="form-control" placeholder="phone" id="phone" ng-model="phone">
           </div>
           <div class="form-group col-sm-2">
-             <button type="submit" class="btn btn-success" ng-click="addContact()">Add Contact</button>
+             <button ng-click="addContact()">Add Contact</button>
           </div>
       </form>
       <div class="col-sm-4">
