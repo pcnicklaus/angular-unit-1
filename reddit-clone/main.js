@@ -2,7 +2,13 @@ var myApp = angular.module('myApp',['angularMoment']);
 myApp.controller('redditController', ['$scope', function($scope) {
 
     //sort functionality
-    $scope.options = ['votes', 'date', 'title'];
+    $scope.data = {
+      availableOptions: [
+      {id:'votes', value:'-votes'},
+      {id:'date', value:'-date'},
+      {id:'title', value:'-title'}
+    ]
+  };
 
     // hardcoded info
     $scope.posts = [
@@ -12,7 +18,7 @@ myApp.controller('redditController', ['$scope', function($scope) {
             description: "some fancy words about something",
             image: "https://upload.wikimedia.org/wikipedia/commons/6/63/Nice-seafront.jpg",
             comments: [],
-
+            date: Date.now(),
             votes: 0
           },
           {
@@ -21,6 +27,7 @@ myApp.controller('redditController', ['$scope', function($scope) {
             description: "some other fancy words about something",
             image: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Nice-night-view-with-blurred-cars_1200x900.jpg",
             comments: [],
+            date: Date.now(),
             votes: 0
           },
           {
@@ -29,6 +36,7 @@ myApp.controller('redditController', ['$scope', function($scope) {
             description: "some fancy words about something",
             image: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nice_view_(3201807289).jpg",
             comments: [],
+            date: Date.now(),
             votes: 0
           }
         ];

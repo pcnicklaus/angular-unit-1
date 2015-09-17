@@ -17,10 +17,13 @@
                 <!-- Submit drowdown reveal -->
                 <button type="button" class="navbar-btn" ng-click="submitScreen = !submitScreen">Submit Post</button>
 
-
+                <label>&nbsp Search</label>
                 <input type="search" class="navbar-search" ng-model="searchText" placeholder="Search">
+
                 <a class="navbar-brand page-scroll" href="#page-top">Reddit Clone</a>
-                <select ng-model="selectedOrder" ng-options="option for option in options">Sort By</select>
+
+                <label>&nbsp Sort By</label>
+                <select ng-options="option.id for option in data.availableOptions track by data.selectedOption.id" ng-model='data.selectedOptions'>Sort By</select>
             </div>
 
 
@@ -71,7 +74,7 @@
     <!-- stories start -->
     <!--/stories-->
    <br>
-   <div class="row" ng-repeat="post in posts | orderBy:selectedOrder | filter:searchText">
+   <div class="row" ng-repeat="post in posts | orderBy: data.selectedOptions.value | filter:searchText">
        <div class="col-md-1"></div>
        <div class = "col-md-10 well well-lg">
        <br>
@@ -82,22 +85,41 @@
            <div class="row">
                <h4 class="col-md-8">
                 <span>{{ post.title }} |</span>
+
            <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="post.votes = post.votes +1"> </span>
            <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="post.votes = post.votes -1"></span>
             <span> {{post.votes}} </span>
            </h4>
+           <small style="font-family:courier,'new courier';" class="text-muted">--{{post.author}} </small>
            </div>
            <div class="row">
                <div class="col-xs-9">
                    <p>{{ post.description }}.</p>
                    <h4>
+
                       <small style="font-family:courier,'new courier';" class="text-muted">
+
                       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> <time title="{{ post.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.date | amCalendar }}</time>  |
                       <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                      <a href="#" class="text-muted">comment |</a>
+
+                      <a href="" class="text-muted" ng-click="commentsDisplay = !commentsDisplay">comment |</a>
+
+
                          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+
                       <a href="" class="text-muted" ng-click="commentScreen = !commentScreen">Add Comment</a>
                          </small>
+                      <br>
+
+                      <div ng-show="commentsDisplay" ng-repeat="comment in post.comments">
+
+                        <br>
+                        <p>{{ comment.author }} says {{ comment.comment }}</p>
+
+                      </div>
+
+
+
                       <div ng-show="commentScreen">
                         <!-- comment form for comments SHOW/HIDE-->
                          <div class="modal-body">
@@ -105,13 +127,10 @@
                               <div class="col-sm-offset-1 col-sm-10">
                                 <form>
                                 <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="title" ng-model="commentTitle">
-                                </div>
-                                <div class="form-group">
                                   <input type="text" class="form-control" placeholder="Author" ng-model="commentAuthor">
                                 </div>
                                 <div class="form-group">
-                                  <input type="textarea" class="form-control" placeholder="Description" ng-model="commentDescription">
+                                  <input type="textarea" class="form-control" placeholder="Comment" ng-model="commentDescription">
                                 </div>
                               </form> <!-- end form -->
                             </div> <!-- end col-sm-offset-1 -->
@@ -133,74 +152,6 @@
    </div>
    </div>
    <hr>
-
-
-
-    <div class="container box" ng-repeat="post in posts | orderBy:selectedOrder | filter:searchText" >
-      <div class="row">
-        <!-- picture -->
-        <div class="col-sm-offset-1, col-sm-2">
-          <img ng-src="{{post.image}}" alt="camera" height="100" width="auto">
-        </div>
-        <div class="col-sm-8">
-        <h2 class="title"> {{post.title}}</h2>
-          <h4 class="author"> {{post.author}}</h4>
-          <p class="description">{{post.description}}</p>
-          <time title="{{ post.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.date | amCalendar }}</time>
-
-          <p class="votes"> {{post.votes}} <button type="submit" class="btn btn-default" ng-click="post.votes = post.votes +1">Upvote</button>
-
-          <button type="submit" class="btn btn-default" ng-click="post.votes = post.votes -1">Downvote</button></p>
-
-          <!-- NEED HELP HOOKING THIS UP!!! -->
-          <!-- comment in comments... -->
-          <button class="btn btn-success" ng-click="commentScreen = !commentScreen">Add a comment</button>
-          <br>
-          <button ng-show="post.comments.length > 0" ng-click="commentsDisplay = !commentsDisplay">Comments</button>
-
-
-            <div ng-show="commentsDisplay" ng-repeat="comment in post.comments">
-
-              <p>{{ comment.author }} says {{ comment.comment }}</p>
-
-
-          </div>
-
-
-          <div ng-show="commentScreen">
-              <!-- comment form for comments SHOW/HIDE-->
-               <div class="modal-body">
-                  <div class="row">
-                    <div class="col-sm-offset-1 col-sm-10">
-                      <form>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="title" ng-model="commentTitle">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Author" ng-model="commentAuthor">
-                      </div>
-                      <div class="form-group">
-                        <input type="textarea" class="form-control" placeholder="Description" ng-model="commentDescription">
-                      </div>
-                    </form> <!-- end form -->
-                  </div> <!-- end col-sm-offset-1 -->
-                </div> <!-- end row -->
-              </div> <!-- end modal body -->
-
-
-              <button class="btn btn-success" ng-click="addComment()" ng-mouseup="commentScreen = !commentScreen">Post</button>
-              <button class="btn" ng-click="commentScreen = !commentScreen">Cancel</button>
-
-          </div>
-
-        </div> <!-- end col-sm-8 -->
-      </div> <!-- end row -->
-    </div> <!-- end container box -->
-
-
-
-
-
 
 
 
