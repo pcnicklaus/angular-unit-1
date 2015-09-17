@@ -86,10 +86,21 @@
           <!-- NEED HELP HOOKING THIS UP!!! -->
           <!-- comment in comments... -->
           <button class="btn btn-success" ng-click="commentScreen = !commentScreen">Add a comment</button>
+          <br>
+          <button ng-show="post.comments.length > 0" ng-click="commentsDisplay = !commentsDisplay">Comments</button>
 
-          <div ng-repeat="comment in post.comments">
 
-            <p>{{ comment.author }} says {{ comment.comment }}</p>
+
+            <!-- stuff i want or tried -->
+            <!-- <a ng-click="commentsDisplay = !commentsDisplay">Comments</a> -->
+            <!-- ng-hide="$scope.comments.length == 0"
+                     !$scope.comments
+                        hides it
+                     this.comments.length == 0" -->
+
+            <div ng-show="commentsDisplay" ng-repeat="comment in post.comments">
+
+              <p>{{ comment.author }} says {{ comment.comment }}</p>
 
 
           </div>
