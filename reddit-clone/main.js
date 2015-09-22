@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['angularMoment']);
+var myApp = angular.module('myApp',['angularMoment', 'ngAnimate']);
 myApp.controller('redditController', ['$scope', function($scope) {
 
     //sort functionality
@@ -7,7 +7,8 @@ myApp.controller('redditController', ['$scope', function($scope) {
       {id:'votes', value:'-votes'},
       {id:'date', value:'-date'},
       {id:'title', value:'-title'}
-    ]
+    ],
+      selectedOption: {id: 'votes', value: '-votes'}
   };
 
     // hardcoded info
@@ -44,24 +45,23 @@ myApp.controller('redditController', ['$scope', function($scope) {
 
     //add post stuffs
     $scope.addPost = function () {
-      $scope.posts.push({
+      var payload = {
         'title': $scope.title,
         'author': $scope.author,
         'description': $scope.description,
         'image': $scope.image,
         'comments': [],
         'date': Date.now()
-      });
-      $scope.title = '';
-      $scope.author = '';
-      $scope.description = '';
-      $scope.image = '';
+      };
+      if ($scope.redditForm.$valid) {
+        $scope.posts.push(payload);
+        payload = {};
+      }
 
     };
 
 
    $scope.addComment = function(){
-    console.log(this)
        this.post.comments.push({author:this.commentAuthor, comment:this.commentDescription});
       $scope.commentAuthor = '';
       $scope.commentDescription = '';

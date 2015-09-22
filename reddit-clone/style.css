@@ -20,3 +20,9 @@ body {
 .well {
   min-height: 250px;
 }
+
+/* when hiding the picture */
+.ng-show-add         { animation:0.5s lightSpeedOut ease; }
+
+/* when showing the picture */
+.ng-show-remove      { animation:0.5s flipInX ease; }

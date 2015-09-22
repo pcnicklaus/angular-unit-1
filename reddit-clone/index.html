@@ -41,20 +41,26 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10">
-              <form>
+              <form name="redditForm" ng-submit="addPost()" novalidate >
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="title" ng-model="title">
+                  <input type="text" class="form-control" placeholder="title" ng-model="title" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Author" ng-model="author">
+                  <input type="text" class="form-control" placeholder="Author" ng-model="author" required>
                 </div>
                 <div class="form-group">
-                  <input type="textarea" class="form-control" placeholder="Description" ng-model="description">
+                  <input type="textarea" class="form-control" placeholder="Description" ng-model="description" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Image URL" ng-model="image">
+                  <input type="url" class="form-control" placeholder="Image URL" ng-model="image" required>
                 </div>
+                <div>
+                  <button type="submit" class="btn btn-success" ng-mouseup="submitScreen = !submitScreen" value="Submit Post"></button>
+                  <div>Your posting is {{redditForm.$valid}}</div>
 
+
+                  <button class="btn" ng-click="submitScreen = !submitScreen">Cancel</button>
+                </div>
               </form>
             </div>
           </div>
@@ -63,9 +69,9 @@
 
       <!-- inside the submit screen to add post -->
 
-      <button class="btn btn-success" ng-click="addPost()" ng-mouseup="submitScreen = !submitScreen">Okay</button>
+    <!--   <button class="btn btn-success" ng-click="addPost()" ng-mouseup="submitScreen = !submitScreen">Okay</button>
 
-      <button class="btn" ng-click="submitScreen = !submitScreen">Cancel</button>
+      <button class="btn" ng-click="submitScreen = !submitScreen">Cancel</button> -->
 
     </div>
   </div>
